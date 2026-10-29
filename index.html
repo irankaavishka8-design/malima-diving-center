@@ -89,6 +89,31 @@ h1, h2, h3 {
     transform: translateY(0);
   }
 }
+ 
+
+/* Fix text visibility */
+body {
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, p, li, label {
+  color: #ffffff;
+}
+
+a {
+  color: #7cecff;
+}
+
+header, nav, main, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+body::before,
+body::after {
+  z-index: 0;
+  pointer-events: none;
+}
 
 /* Immersive underwater atmosphere */
 body {
