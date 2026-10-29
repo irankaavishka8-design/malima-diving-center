@@ -21,6 +21,84 @@ img{width:100%;height:200px;object-fit:cover;border-radius:8px}
 button{background:#00bcd4;border:0;padding:12px 22px;border-radius:6px;font-weight:bold}
 footer{background:#00334d;color:white;text-align:center;padding:25px}
  
+ 
+/* Deep underwater ocean */
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, #247f9d 0%, transparent 48%),
+    linear-gradient(180deg, #052b50, #064766 55%, #021c35);
+  background-attachment: fixed;
+  color: #fff;
+}
+
+/* Moving sunlight rays */
+.underwater-rays {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .3;
+  background: repeating-conic-gradient(
+    from 250deg at 50% -10%,
+    transparent 0deg 8deg,
+    rgba(155, 240, 255, .35) 9deg 11deg,
+    transparent 12deg 20deg
+  );
+  animation: raysMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes raysMove {
+  from { transform: translateX(-3%); opacity: .15; }
+  to { transform: translateX(3%); opacity: .4; }
+}
+
+/* Swimming fish */
+.ocean-fish {
+  position: fixed;
+  left: -100px;
+  top: 38%;
+  font-size: 38px;
+  pointer-events: none;
+  z-index: 2;
+  animation: fishSwim 22s linear infinite;
+}
+
+@keyframes fishSwim {
+  from { left: -100px; }
+  to { left: 110%; }
+}
+
+/* Swaying sea plants */
+.seaweed {
+  position: fixed;
+  bottom: 0;
+  font-size: 58px;
+  transform-origin: bottom center;
+  pointer-events: none;
+  z-index: 2;
+  animation: plantSway 3s ease-in-out infinite alternate;
+}
+
+.seaweed-left { left: 8px; }
+.seaweed-right { right: 8px; animation-delay: -1.5s; }
+
+@keyframes plantSway {
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(8deg); }
+}
+
+/* Keep page content readable above decorations */
+header, nav, main, footer, section {
+  position: relative;
+}
+
+/* Reduce movement for visitors who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .underwater-rays, .ocean-fish, .seaweed {
+    animation: none;
+  }
+}
+
 /* Beautiful ocean animations */
 html {
   scroll-behavior: smooth;
@@ -240,6 +318,11 @@ header, main, footer, nav, section {
 <p>© 2026 Malima Diving Center</p>
 <p>Explore • Discover • Dive</p>
 </footer>
+
+<div class="underwater-rays"></div>
+<div class="ocean-fish" aria-hidden="true">🐠</div>
+<div class="seaweed seaweed-left" aria-hidden="true">🌿</div>
+<div class="seaweed seaweed-right" aria-hidden="true">🌿</div>
 
 </body>
 </html>
